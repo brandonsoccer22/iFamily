@@ -9,6 +9,6 @@ First Install [Composer](https://getcomposer.org/download/)
 Then Install [Laravel](https://laravel.com/docs/5.7/installation) with "composer global require "laravel/installer" and add laravel to your PATH.
 See link for more details
 
-Clone Repository and run "composer install"
+Clone Repository and run "composer install" in the repositories parent directory
 
 In the repository, run the command "php artisan serve".  The web application should be served locally. 
