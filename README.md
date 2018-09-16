@@ -1,7 +1,7 @@
 # iFamily
 iFamily is a family management system
 
-#Installation
+# Installation
 Pre: make sure to have PHP 7.1 or higher
 
 First Install [Composer](https://getcomposer.org/download/)
