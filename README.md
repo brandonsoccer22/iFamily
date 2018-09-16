@@ -12,3 +12,5 @@ See link for more details.
 Clone Repository and run "composer install" in the repositories parent directory.
 
 In the repository, run the command "php artisan serve".  The web application should be served locally. 
+
+For dev, be sure to download the env file in the Team drive and add it to the parent directory
