@@ -14,15 +14,21 @@
                   </section>
 
                 <div class="card-body">
-                    @if (session('status'))
+                    @if (session('status')=="logged_in")
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                        You are logged in!
-                    @endif                    
+                            You are logged in!
+                        </div>                        
+                    @endif                                      
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    @if(isset($user))
+    console.log({!! $user !!});
+    @endif
+</script>
+
 @endsection

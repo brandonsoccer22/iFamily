@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,8 @@
 |
 */
 
+
+//login routes
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -19,10 +23,19 @@ Route::get('/about', function () {
     return view('about');
 });
 
-Route::get('/', function () {
+Route::get('/', function () {	
     return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'UserController@setUser');
+
+#example with middleware
+#Route::put('/', ['middleware'=>'auth', 'uses'=>'AuthController@setAccount']);
+
+#add user routes
+Route::get('/addUser', ['middleware'=>'auth', 'uses'=>'UserController@index']);

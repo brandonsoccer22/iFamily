@@ -63,6 +63,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        
+
+        //set session varaibles
+        \Session::put('user_email', $data['email']);
+
         return User::create([
             'name' => $data['name'],
             'family_id' => $data['email'],

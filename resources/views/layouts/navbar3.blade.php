@@ -17,7 +17,14 @@
 		<a class="nav_link" href="#polls">Choirs</a>
 		<a class="nav_link" href="#grocery_list">Grocery List</a>
 
+		@if(isset($user) && $user['is_parrent']==true)
+			<a class="nav_link" href="#add_user">Add Users</a>	
+		@endif
            
+        
+        <a class="nav_link" href="{{ url('/logout') }}"> Logout </a>
+
+        <!--
         <a class="nav_link" href="{{ route('logout') }}"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
@@ -27,7 +34,7 @@
         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
-            
+       -->     
        
     @endguest
 

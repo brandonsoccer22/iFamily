@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -34,6 +35,21 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        \Log::info(print_r(Auth::user(),true));
+        \Log::info(Auth::id());
+        //\Log::info(Auth::user()->email);
+        \Log::info(print_r(Auth::user(),true));
+        \Log::info("Hello Worlds");
+        \Session::put('status', 'logged_in');
+        \Session::save();
         $this->middleware('guest')->except('logout');
     }
+
+    public function logout () {
+    //logout user
+    auth()->logout();
+    \Session::flush();
+    // redirect to homepage
+    return redirect('/');
+}
 }
