@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Album example for Bootstrap</title>
+    <title>iFamily</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -23,18 +23,12 @@
   <body>
 
     <header>
-      @include('layouts.navbar2')
+      @include('layouts.navbar3')
     </header>
 
     <main role="main">
 
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">iFamily</h1>
-          <p class="lead text-muted">Let your family be united through technology</p>
-          
-        </div>
-      </section>
+      @yield('content')
 
       
     </main>

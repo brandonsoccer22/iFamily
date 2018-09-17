@@ -39,6 +39,7 @@ class CreateChoirsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('choirs');
+        /*
         $table->dropForeign('choirs_user_id_foreign');
         $table->dropIndex('choirs_user_id_index');
         $table->dropColumn('user_id');
@@ -46,6 +47,7 @@ class CreateChoirsTable extends Migration
         $table->dropForeign('choirs_created_by_foreign');
         $table->dropIndex('choirs_created_by_index');
         $table->dropColumn('created_by');
+        */
 
     }
 }
