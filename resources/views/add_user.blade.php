@@ -4,11 +4,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+            <div class="card">                
+                <div class="card-header"><h3>Add a Family Member</h3></div>
+                  <div class="card-body">
+                    <form method="POST" action="/submit-new-user" id="add-user">
                         @csrf
 
                         <div class="form-group row">
@@ -17,10 +16,10 @@
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                @if (isset($error))
+                                    <div class="alert alert-danger" role="alert">
+			                            {!! $error !!}
+			                        </div> 
                                 @endif
                             </div>
                         </div>
@@ -51,29 +50,42 @@
                                     </span>
                                 @endif
                             </div>
-                        </div>
+                        </div>                        
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="user-type" class="col-md-4 col-form-label text-md-right">{{ __('User Type') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            	<div class="styled-select slate">
+	                                <select name="user-type" form="add-user">
+										  <option value="parent">Parent</option>
+										  <option value="child">Child</option>									  
+									</select>
+								</div>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    {{ __('Add') }}
                                 </button>
                             </div>
                         </div>
 
-                        <input id="user-type" name="user-type" type="hidden" value="parent">
+                        <input id="parent-email" name="parent-email" type="hidden" value="{!! $user->family_id !!}">
+
                     </form>
-                </div>
+                </div>               
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    @if(isset($user))
+    console.log({!! $user !!});
+    @endif
+</script>
+
 @endsection

@@ -18,7 +18,7 @@
 		<a class="nav_link" href="#grocery_list">Grocery List</a>
 
 		@if(isset($user) && $user['is_parrent']==true)
-			<a class="nav_link" href="#add_user">Add Users</a>	
+			<a class="nav_link" href="/addUser">Add Users</a>	
 		@endif
            
         

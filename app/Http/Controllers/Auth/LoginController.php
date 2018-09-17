@@ -35,13 +35,9 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        \Log::info(print_r(Auth::user(),true));
-        \Log::info(Auth::id());
-        //\Log::info(Auth::user()->email);
-        \Log::info(print_r(Auth::user(),true));
-        \Log::info("Hello Worlds");
-        \Session::put('status', 'logged_in');
-        \Session::save();
+        
+        //\Session::put('status', 'logged_in');
+        //\Session::save();
         $this->middleware('guest')->except('logout');
     }
 

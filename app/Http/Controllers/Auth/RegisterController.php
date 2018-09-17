@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -66,7 +68,9 @@ class RegisterController extends Controller
         
 
         //set session varaibles
-        \Session::put('user_email', $data['email']);
+        //\Session::put('user_email', $data['email']);
+
+
 
         return User::create([
             'name' => $data['name'],
@@ -74,5 +78,51 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function add(Request $request){
+        //parent adding a kid
+        
+       \Log::info("in Register");
+        \Log::info(print_r($data,true));
+
+        $data=array();
+
+        $data=$request->all();
+
+        \Log::info("in Register");
+        \Log::info(print_r($data,true));
+
+
+        if($date['user-type']=="child"){
+
+            $date['user-type']=false;
+
+            User::create([
+            'name' => $data['name'],
+            'family_id' => $data['parent-email'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'is_parrent' => $date['user-type'],
+        ]);
+
+        //parent adding a parent
+        }else if(isset($date['parent-email'])){
+
+            User::create([
+            'name' => $data['name'],
+            'family_id' => $data['parent-email'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),            
+        ]);
+        } else{
+            $message = "Unable to add family member";
+            return view('home')->with('addError', $message);
+        }
+
+        $message = "Successfully added family member!";
+        return view('home')->with('addSuccess', $message);
+
+
     }
 }

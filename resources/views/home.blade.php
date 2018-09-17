@@ -14,7 +14,15 @@
                   </section>
 
                 <div class="card-body">
-                    @if (session('status')=="logged_in")
+                    @if(isset($addError))
+                        <div class="alert alert-danger" role="alert">
+                            {!! $addError !!}
+                        </div> 
+                    @elseif(isset($addSuccess))
+                        <div class="alert alert-success" role="alert">
+                            {!! $addSuccess !!}
+                        </div> 
+                    @elseif(isset($user) && $user['name'])
                         <div class="alert alert-success" role="alert">
                             You are logged in!
                         </div>                        

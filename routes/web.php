@@ -31,6 +31,10 @@ Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+Route::post('/submit-new-user', ['middleware'=>'auth', 'uses'=>'UserController@addUser']);
+
+
+
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@setUser');
 
