@@ -31,7 +31,7 @@ Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::post('/submit-new-user', ['middleware'=>'auth', 'uses'=>'UserController@addUser']);
+Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'is_parent');
 
 
 
@@ -42,4 +42,4 @@ Route::get('/home', 'UserController@setUser');
 #Route::put('/', ['middleware'=>'auth', 'uses'=>'AuthController@setAccount']);
 
 #add user routes
-Route::get('/addUser', ['middleware'=>'auth', 'uses'=>'UserController@index']);
+Route::get('/addUser', ['middleware'=>['auth','is_parent'], 'uses'=>'UserController@index']);
