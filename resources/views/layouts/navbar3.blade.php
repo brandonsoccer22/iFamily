@@ -18,7 +18,7 @@
 		<a class="nav_link" href="#grocery_list">Grocery List</a>
 
            
-        <a class="dropdown-item" href="{{ route('logout') }}"
+        <a class="nav_link" href="{{ route('logout') }}"
            onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();">
             {{ __('Logout') }}
