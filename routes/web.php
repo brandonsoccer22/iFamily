@@ -15,13 +15,15 @@ use Illuminate\Support\Facades\Auth;
 
 
 //login routes
-Route::get('/welcome', function () {
+
+/*Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Route::get('/about', function () {
     return view('about');
 });
+*/
 
 Route::get('/', function () {	
     return view('home');
@@ -41,10 +43,10 @@ Route::get('/home', 'UserController@setUser');
 #Route::put('/', ['middleware'=>'auth', 'uses'=>'AuthController@setAccount']);
 
 #add user routes
-Route::get('/addUser', ['middleware'=>['auth','is_parent'], 'uses'=>'UserController@index']);
-Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'is_parent');
+Route::get('/addUser', ['middleware'=>['auth','is_parent','has_user'], 'uses'=>'UserController@index']);
+Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'is_parent','has_user');
 
 
 #choir routes
-Route::get('/reviewChoirs', ['middleware'=>['auth','is_parent'], 'uses'=>'ChoirController@index']);
-Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_parent');
+Route::get('/reviewChoirs', ['middleware'=>['auth','is_parent','has_user'], 'uses'=>'ChoirController@index']);
+Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_parent','has_user');

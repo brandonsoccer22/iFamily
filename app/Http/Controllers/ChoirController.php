@@ -12,8 +12,8 @@ class ChoirController extends Controller
     */
     public function index(Request $request){
     	   	
-
-    	return view('review_choirs');
+    	$choirs= Choir::get();
+    	return view('review_choirs')->with('choirs',$choirs);
     }
 
     public function put(Request $request){
@@ -23,7 +23,7 @@ class ChoirController extends Controller
     	switch($data['is_static']){
 
     		case 'none':
-    			$data['repeat']='none';
+    			$data['repeat']=$data['duedate'];
     			$data['is_static']=false;
     			break;
 
@@ -52,6 +52,9 @@ class ChoirController extends Controller
 		            'note' => $data['note'],		            
 		            'is_static' => $data['is_static'],
 		        ]);
+    				//user_name
+    				//created_by_name
+
 
     	$message="Choir Added Successfully!";
 

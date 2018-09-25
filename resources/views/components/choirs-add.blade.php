@@ -8,19 +8,24 @@
                         @csrf
                         
                         Name:<br>
-  						<input type="text" name="name" ><br>
+  						<input type="text" name="name" required="required"><br>
 
   						<br>Type:<br>
-  						<input type="radio" name="is_static" value="daily" checked>Reoccurring: Daily<br>
-  						<input type="radio" name="is_static" value="weekly" checked>Reoccurring: Weekly<br>
-  						<input type="radio" name="is_static" value="monthly" checked>Reoccurring: Monthly<br>
+  						<input type="radio" name="is_static" value="daily" required="required">Reoccurring: Daily<br>
+  						<input type="radio" name="is_static" value="weekly">Reoccurring: Weekly<br>
+  						<input type="radio" name="is_static" value="monthly">Reoccurring: Monthly<br>
   						<input type="radio" name="is_static" value="none"> One-time<br>
+
+  						<br>Due Date (if not reoccuring):<br>
+  						<input type="date" name="duedate"><br>
 
   						<br>Assign to:<br>
                         @foreach(session('user')['family'] as $key=>$value)
-                        <input type="radio" name="user_id" value="{!! $value['id'] !!}" > {!! $value['name'] !!}<br>
+                        <input type="radio" name="user_id" value="{!! $value['id'] !!}" required="required"> {!! $value['name'] !!}<br>
 
                         <input type="hidden" name="created_by" value="{!! session('user')['id'] !!}">
+
+
 
                         @endforeach
 
