@@ -31,7 +31,6 @@ Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'is_parent');
 
 
 
@@ -43,3 +42,9 @@ Route::get('/home', 'UserController@setUser');
 
 #add user routes
 Route::get('/addUser', ['middleware'=>['auth','is_parent'], 'uses'=>'UserController@index']);
+Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'is_parent');
+
+
+#choir routes
+Route::get('/reviewChoirs', ['middleware'=>['auth','is_parent'], 'uses'=>'ChoirController@index']);
+Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_parent');

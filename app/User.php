@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','family_id',"is_parrent"
+        'id','name', 'email', 'password','family_id','is_parent','is_admin'
     ];
 
     /**
@@ -27,4 +27,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public static function getFamily($family_id){
+        $params = [$family_id];
+        $sql = "SELECT id,name,email,is_parent
+                FROM users
+                WHERE family_id = ?";
+       
+        $rs = \DB::select($sql, $params);
+
+        return json_decode(json_encode($rs), true);
+    }
 }

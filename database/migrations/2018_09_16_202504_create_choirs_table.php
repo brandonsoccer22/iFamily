@@ -19,7 +19,7 @@ class CreateChoirsTable extends Migration
             $table->integer('created_by')->unsigned();
             $table->string('name');
             $table->boolean('is_static');
-            $table->string('status');
+            $table->string('status')->default("open");
             $table->string('repeat');
             $table->string('note');
             $table->timestamps();

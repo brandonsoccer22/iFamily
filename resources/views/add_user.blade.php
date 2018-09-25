@@ -17,7 +17,7 @@
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                                 @if (isset($error))
-                                    <div class="alert alert-danger" role="alert">
+                                    <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
 			                            {!! $error !!}
 			                        </div> 
                                 @endif
@@ -31,9 +31,11 @@
                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
+                                <div style="margin-top: 20px;">
+                                    <span class="invalid-feedback" role="alert" >
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -73,7 +75,7 @@
                             </div>
                         </div>
 
-                        <input id="parent-email" name="parent-email" type="hidden" value="{!! $user->family_id !!}">
+                        <input id="parent-email" name="parent-email" type="hidden" value="{!! session('user')->family_id !!}">
 
                     </form>
                 </div>               
@@ -83,8 +85,8 @@
 </div>
 
 <script>
-    @if(isset($user))
-    console.log({!! $user !!});
+    @if(session()->has('user'))
+    console.log({!! session('user') !!});
     @endif
 </script>
 

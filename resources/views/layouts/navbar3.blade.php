@@ -17,8 +17,13 @@
 		<a class="nav_link" href="#polls">Choirs</a>
 		<a class="nav_link" href="#grocery_list">Grocery List</a>
 
-		@if(isset($user) && $user['is_parrent']==true)
-			<a class="nav_link" href="/addUser">Add Users</a>	
+		@if(session()->has('user') && session('user')['is_parent']==true)
+			<a class="nav_link" href="/addUser">Add Users</a>
+			<a class="nav_link" href="/reviewChoirs">Review Choirs</a>		
+		@endif
+
+		@if(session()->has('user') && session('user')['is_admin']==true)			
+			<a class="nav_link" href="#admin">Admin</a>		
 		@endif
            
         

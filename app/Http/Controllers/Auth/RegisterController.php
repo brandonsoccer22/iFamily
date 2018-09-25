@@ -103,7 +103,7 @@ class RegisterController extends Controller
             'family_id' => $data['parent-email'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'is_parrent' => $date['user-type'],
+            'is_parent' => $date['user-type'],
         ]);
 
         //parent adding a parent

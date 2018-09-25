@@ -23,10 +23,13 @@ body {
   color: black;
 }
 
-.active {
+
+.topnav .active {
   background-color: #007bff;
   color: white;
 }
+
+
 
 .topnav .icon {
   display: none;
@@ -52,4 +55,18 @@ body {
     display: block;
     text-align: left;
   }
+
+  
 }
+
+.childnav li {
+    padding: 20px;
+    border-style: none solid solid none;
+  }
+
+
+.childnav .active {
+  background-color: lightgrey;  
+}
+
+

@@ -22,9 +22,13 @@
                         <div class="alert alert-success" role="alert">
                             {!! $addSuccess !!}
                         </div> 
-                    @elseif(isset($user) && $user['name'])
+                    @elseif(isset($addChoirSuccess))
                         <div class="alert alert-success" role="alert">
-                            You are logged in!
+                            {!! $addChoirSuccess !!}
+                        </div> 
+                    @elseif(session()->has('user') && session('user')['name'])
+                        <div class="alert alert-success" role="alert">
+                            Welcome {!! session('user')['name'] !!}!
                         </div>                        
                     @endif                                      
                 </div>
@@ -34,8 +38,8 @@
 </div>
 
 <script>
-    @if(isset($user))
-    console.log({!! $user !!});
+    @if(session()->has('user'))
+    console.log({!! session('user') !!});
     @endif
 </script>
 

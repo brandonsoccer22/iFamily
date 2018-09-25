@@ -17,16 +17,23 @@ class UserController extends Controller
     public function index(Request $request){
     	$user = $request->user();    	
 
-    	return view('add_user')->with('user',$user);
+    	return view('add_user');
     }
 
 
     //set the current value of the user
     public function setUser(Request $request){
 
-    	$user = $request->user();    	
+    	$user = $request->user(); 
 
-    	return view('home')->with('user',$user);
+    	$family= User::getFamily($user['family_id']);
+
+    	$user['family']=$family;
+
+    	\Session::put('user', $user); 	
+    	\Session::save();
+
+    	return view('home');
     }
 
     public function addUser(Request $request){
@@ -56,17 +63,17 @@ class UserController extends Controller
 		            'family_id' => $data['parent-email'],
 		            'email' => $data['email'],
 		            'password' => Hash::make($data['password']),
-		            'is_parrent' => $data['user-type'],
+		            'is_parent' => $data['user-type'],
 		        ]);
 				  } catch (Exception $e){
 				    $errorCode = $e->errorInfo[1];
 				    if($errorCode == 1062){
 				        $message = "Family Member already exists";
 
-				        return view('add_user')->with('error', $message)->with('user',$user);
+				        return view('add_user')->with('error', $message);
 				    } else{
 				    	$message = "Unknown Error";
-				    	return view('add_user')->with('error', $message)->with('user',$user);
+				    	return view('add_user')->with('error', $message);
 				    }
 				  }
 
@@ -86,27 +93,32 @@ class UserController extends Controller
 				    if($errorCode == 1062){
 				        $message = "Family Member already exists";
 
-				        return view('add_user')->with('error', $message)->with('user',$user);
+				        return view('add_user')->with('error', $message);
 				    } else{
 				    	$message = "Unknown Error";
-				    	return view('add_user')->with('error', $message)->with('user',$user);
+				    	return view('add_user')->with('error', $message);
 				    }
 				  }
 
 
         } else{
             $message = "Unable to add family member";
-            return view('home')->with('addError', $message)->with('user',$user);
+            return view('home')->with('addError', $message);
         }
 
              
+        $family= User::getFamily($user['family_id']);
 
+    	$user['family']=$family;
+
+    	\Session::put('user', $user); 	
+    	\Session::save();
 
         $message = "Successfully added family member!";
 
         
 
-        return view('home')->with('addSuccess', $message)->with('user',$user);
+        return view('home')->with('addSuccess', $message);
 
 
     }
