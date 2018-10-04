@@ -50,3 +50,9 @@ Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'i
 #choir routes
 Route::get('/reviewChoirs', ['middleware'=>['auth','is_parent','has_user'], 'uses'=>'ChoirController@index']);
 Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_parent','has_user');
+
+#groceries routes
+Route::get('/groceries', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@index']);
+
+#polls routes
+Route::get('/polls', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@index']);
