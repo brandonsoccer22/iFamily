@@ -17,7 +17,7 @@ class CreatePollsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('user_id');
-            $table->boolean('completed');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
         });
     }

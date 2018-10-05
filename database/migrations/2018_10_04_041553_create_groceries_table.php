@@ -18,7 +18,6 @@ class CreateGroceriesTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('from')->nullable();
-            $table->boolean('status')->default(0);
             $table->string('type');
             $table->integer('added_by');
             $table->integer('done_by')->nullable();
