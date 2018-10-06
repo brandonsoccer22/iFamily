@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Grocery extends Model
 {
-    public function scopeUndone($query)
-    {
-    	return $query->where('status', 0);
-    }
-    public function scopeOftype($query, $type)
-    {
-    	return $query->where('type', $type);
-    }
-}
+	 /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+	 protected $fillable = [
+	 	'created_by', 'name', 'description', 'type', 'from', 'done_by'
+	 ];
+	}

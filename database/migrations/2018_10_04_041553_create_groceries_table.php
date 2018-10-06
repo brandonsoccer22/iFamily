@@ -19,7 +19,7 @@ class CreateGroceriesTable extends Migration
             $table->string('description')->nullable();
             $table->string('from')->nullable();
             $table->string('type');
-            $table->integer('added_by');
+            $table->integer('created_by');
             $table->integer('done_by')->nullable();
             $table->timestamps();
         });

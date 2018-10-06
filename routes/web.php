@@ -53,6 +53,14 @@ Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_
 
 #groceries routes
 Route::get('/groceries', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@index']);
+Route::get('/groceries/create', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@create']);
+Route::post('/groceries', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@store']);
+Route::post('/groceries/done', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@done']);
+Route::post('/groceries/delete', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@delete']);
 
 #polls routes
 Route::get('/polls', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@index']);
+Route::get('/polls/create', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@create']);
+Route::post('/polls', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@store']);
+Route::post('/polls/vote', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@vote']);
+Route::post('/polls/done', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@done']);
