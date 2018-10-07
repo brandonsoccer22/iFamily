@@ -56,4 +56,19 @@ class GroceryController extends Controller
         $message="Grocery Marked as Done Successfully!";
     	return view('home')->with('addGrocerySuccess', $message);;
     }
+    public function filter(){
+
+
+        $groceries = DB::table('groceries')
+        ->SELECT('groceries.*', 'users.name AS username')
+        ->join('users', 'users.id', '=', 'groceries.created_by')->where('done_by', null)->whereIn('type', request('filter'))->get();
+
+        $done_groceries = DB::table('groceries')
+        ->SELECT('groceries.*', 'u1.name AS added_by', 'u2.name AS bought_by')
+        ->join('users AS u1', 'u1.id', '=', 'groceries.created_by')
+        ->join('users AS u2', 'u2.id', '=', 'groceries.done_by')
+        ->whereNotNull('done_by')->get();
+
+        return view('groceries.index')->with(['groceries' => $groceries, 'done_groceries' => $done_groceries, 'checked' => request('filter')]);
+    }
 }

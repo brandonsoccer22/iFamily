@@ -54,6 +54,22 @@
 	<div id="Ongoing" class="tabcontent">
 		<div style='width:60%'>
 			@if (count($groceries) > 0)
+			<section>
+				<form method='POST' action='/groceries/filter'>
+					<table>
+					<tr>
+						{{csrf_field()}}
+						<td><label><input type="checkbox" name="filter[]" value="type1" @if(!isset($checked) or in_array('type1', $checked)) checked="true" @endif/>type1</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="type2" @if(!isset($checked) or in_array('type2', $checked)) checked="true"@endif/>type2</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="type3" @if(!isset($checked) or in_array('type3', $checked)) checked="true"@endif/>type3</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="type4" @if(!isset($checked) or in_array('type4', $checked)) checked="true"@endif/>type4</label></td>
+					</tr>
+					</table>
+					<button type='submit' class="btn btn-primary">Filter</button><br><br>
+				</form>
+			</section>
+			@endif
+			@if (count($groceries) > 0)
 			<table>
 				<thead><tr><th>Title</th><th>From</th><th>Added by</th><th>Type</th><th>Added at</th></tr></thead>
 				<tbody>
@@ -61,7 +77,7 @@
 					<tr id = 'g{{$grocery->id}}' onclick='showDetails(this)'>
 						<td>{{$grocery->name}}</td>
 						<td>{{$grocery->from}}</td>
-						<td>{{$grocery->added_by}}</td>
+						<td>{{$grocery->username}}</td>
 						<td>{{$grocery->type}}</td>
 						<td>{{$grocery->created_at}}</td>
 						<td hidden>{!! $grocery->description !!}</td>

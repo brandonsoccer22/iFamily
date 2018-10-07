@@ -57,6 +57,7 @@ Route::get('/groceries/create', ['middleware'=>['auth','has_user'], 'uses'=>'Gro
 Route::post('/groceries', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@store']);
 Route::post('/groceries/done', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@done']);
 Route::post('/groceries/delete', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@delete']);
+Route::post('/groceries/filter', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@filter']);
 
 #polls routes
 Route::get('/polls', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@index']);
