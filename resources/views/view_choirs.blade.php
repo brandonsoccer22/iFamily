@@ -38,7 +38,9 @@
 
                     <td style="text-align:left;">@if(isset($value['repeat'])){!! $value['repeat'] !!} @else NA @endif</td>
 
-                    <td style="text-align:left">@if(isset($value['note'])){!! $value['note'] !!} @else none @endif</td>
+                    <td style="text-align:center">@if(isset($value['note']))
+                    
+                     <button id="choir-note-get"  type="button" class="btn btn-sm btn-primary pull-center" onclick="showChoirNotes('{!!$value['note']!!}');"><i  class="fa">&#xf24a;</i></button>@else None @endif</td>
 
                     <td style="text-align:left;">{!! $value['status'] !!}</td>
 

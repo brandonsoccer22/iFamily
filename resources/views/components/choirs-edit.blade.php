@@ -34,16 +34,16 @@
 
                     <td style="text-align:left;">@if(isset($value['repeat'])){!! $value['repeat'] !!} @else NA @endif</td>
 
-                    <td style="text-align:left">@if(isset($value['note'])){!! $value['note'] !!} @else none @endif</td>
+                    <td style="text-align:center">@if(isset($value['note']))
+                    
+                     <button id="choir-note-get"  type="button" class="btn btn-sm btn-primary pull-center" onclick="showChoirNotes('{!!$value['note']!!}');"><i  class="fa">&#xf24a;</i></button>@else None @endif</td>
 
                     <td style="text-align:left;">{!! $value['status'] !!}</td>
 
                     <td style="text-align:left">{!! $value['created_at'] !!}</td>   
                      <td style="text-align:left">                     	
                         <a  href="/edit-choir/?id={!! $value['id'] !!}" class="btn btn-sm btn-primary pull-center" ><i class="fa fa-pencil"></i></a>
-                        <button type="button" class="btn btn-sm btn-danger pull-right" onclick="deleteChoir({!! $value['id'] !!})"><span class="fa fa-remove"></span></button>
-                     </td>                 
-
+                        <button type="button" class="btn btn-sm btn-danger pull-right" onclick="deleteChoir({!! $value['id'] !!})"><span class="fa fa-remove"></span></button></td>
                 </tr>
 
                 {{-- Second Check --}}
@@ -71,6 +71,8 @@
 @else
 	console.log("No Choirs found :/")
 @endif
+
+
 
 function deleteChoir(choir_id){
 	console.log("In deleteChoir");

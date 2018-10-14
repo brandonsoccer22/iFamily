@@ -37,6 +37,9 @@
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 
+<!-- custom js -->
+<script src="/js/common.js"></script>
+
 
 </head>
 
@@ -49,6 +52,7 @@
     <main role="main">
 
         @yield('content')
+        @include('modals.choir-note')
 
 
     </main>
