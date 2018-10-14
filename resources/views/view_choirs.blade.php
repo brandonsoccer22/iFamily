@@ -1,12 +1,16 @@
-<div class="container tab-pane" id='choirs-approve2'>
+@extends('layout')
+
+@section('content')
+
+<div class="container tab-pane" id='view-choirs'>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width:1000px;">                
-                <div class="card-header"><h3>Approve Choirs</h3></div>
+                <div class="card-header"><h3>View Choirs</h3></div>
                   <div class="card-body">
                      {{-- First Check --}}
-    	@if(!empty((array)$pendingChoirs))
-        <table id="approve_choirs_table_id" class="table" data-mobile-responsive="true"> {{--Note sure if data-mobile-responsive="true" does anything--}}
+    	@if(!empty((array)$choirs))
+        <table id="view_choirs_table_id" class="table" data-mobile-responsive="true"> {{--Note sure if data-mobile-responsive="true" does anything--}}
             <thead>
             <tr>
                 <th style="text-align:left;width: 20px;">Name</th>
@@ -22,7 +26,7 @@
             <tbody>
             @endif
 
-            @forelse((array)$pendingChoirs as $key => $value)
+            @forelse((array)$choirs as $key => $value)
 
                 <tr >
 
@@ -40,8 +44,9 @@
 
                     <td style="text-align:left">{!! $value['created_at'] !!}</td>   
                      <td style="text-align:left">                     	
-                        <a  href="/edit-choir/?id={!! $value['id'] !!}&status=rejected" class="btn btn-sm btn-danger " ><span class="fa fa-remove"></span></a>
-                        <button type="button" class="btn btn-sm btn-success pull-right" onclick="approveChoir({!! $value['id'] !!})"><i class="fa fa-check"></i></button>
+                        @if($value['is_static']==false && $value['status']!="pending")
+                         <button type="button" class="btn btn-sm btn-success" onclick="submitChoir({!! $value['id'] !!})">Submit</button>                   
+                        @endif
                      </td>                 
 
                 </tr>
@@ -49,13 +54,13 @@
                 {{-- Second Check --}}
             @empty
                 <div>
-                    You do not have any pending choirs to review.
+                    You do not have any choirs.
                 </div>
 
             @endforelse
 
             {{-- Third Check --}}
-            @if(!empty((array)$pendingChoirs))
+            @if(!empty((array)$choirs))
             </tbody>
         </table>
     		@endif
@@ -72,18 +77,19 @@
 	console.log("No Choirs found :/")
 @endif
 
-function approveChoir(choir_id){	
-                $('#choir-delete-href').attr("href", "/delete-choir/?id="+choir_id+"status=approved").text("Approve").removeClass('btn-danger').addClass('btn-success');
+function submitChoir(choir_id){	
+                $('#choir-delete-href').attr("href", "/submit-choir/?id="+choir_id).text("Submit").removeClass('btn-danger').addClass('btn-success');;
                 $('#choir-delete-modal').modal('show');
-                $('#modal-choir-body').text('Are you sure you want to approve this choir?');
+                $('#modal-choir-body').text('Are you sure you want to submit this choir for parental review?');
+
             }
 
 
-//could add date sorting for DataTable sorting, the needed delcarations are in the head as https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js and in MailChimp.blade.php as the function in the script before the tabs
+ //could add date sorting for DataTable sorting, the needed delcarations are in the head as https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js and in MailChimp.blade.php as the function in the script before the tabs
         //$.fn.dataTable.moment( 'd-M-Y' ); 
-		//DataTable
+//DataTable
         $(document).ready(function() {
-            $('#approve_choirs_table_id').DataTable({
+            $('#view_choirs_table_id').DataTable({
                 //"paging": false,
                 //"order": [[ 1, "desc" ]], //set default sorting to specific column
                 //aaSorting:[],//disables initial sorting,
@@ -105,6 +111,9 @@ function approveChoir(choir_id){
             })
         });
 
+
 </script>
 
 @include('modals.confirm-action-choir')
+
+@endsection

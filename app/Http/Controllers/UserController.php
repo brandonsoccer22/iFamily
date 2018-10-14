@@ -47,8 +47,8 @@ class UserController extends Controller
 
        
 
-        \Log::info("in addUser, data=");
-        \Log::info(print_r($data,true));
+        //\Log::info("in addUser, data=");
+        //\Log::info(print_r($data,true));
 
 
         if($data['user-type']=="child"){

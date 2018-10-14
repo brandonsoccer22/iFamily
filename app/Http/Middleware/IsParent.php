@@ -17,13 +17,13 @@ class IsParent
     public function handle($request, Closure $next)
     {
         $user = $request->user(); 
-        \Log::info("in middleware");
+        //\Log::info("in middleware");
 
         if($user['is_parent']==true){
-            \Log::info("in middleware: pass");
+            //\Log::info("in middleware: pass");
             return $next($request);
         } else{
-            \Log::info("in middleware: fail");
+            //\Log::info("in middleware: fail");
             //return view('home')->with('user',$user);
             abort(403, 'Unauthorized action.');
         }

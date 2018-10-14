@@ -15,7 +15,8 @@
                 <th style="text-align:left;width: 20px;">Due</th>
                 <th style="text-align:left;width: 20px;">Note</th>
                 <th style="text-align:left;width: 20px;">Status</th>
-                <th style="text-align:left;width: 20px;">Created At</th>           
+                <th style="text-align:left;width: 20px;">Created At</th>    
+                <th style="text-align:left;width: 20px;">Action</th>         
             </tr>
             </thead>
             <tbody>
@@ -23,21 +24,25 @@
 
             @forelse((array)$choirs as $key => $value)
 
-                <tr>
+                <tr >
 
-                    <td>{!! $value['name'] !!}</td>
+                    <td style="text-align:left;">{!! $value['name'] !!}</td>
 
-                    <td>{!! $value['user_name'] !!}</td>
+                    <td style="text-align:left;">{!! $value['user_name'] !!}</td>
 
-                    <td>{!! $value['created_by_name'] !!}</td>
+                    <td style="text-align:left;">{!! $value['created_by_name'] !!}</td>
 
-                    <td>@if(isset($value['repeat'])){!! $value['repeat'] !!} @else NA @endif</td>
+                    <td style="text-align:left;">@if(isset($value['repeat'])){!! $value['repeat'] !!} @else NA @endif</td>
 
                     <td style="text-align:left">@if(isset($value['note'])){!! $value['note'] !!} @else none @endif</td>
 
-                    <td>{!! $value['status'] !!}</td>
+                    <td style="text-align:left;">{!! $value['status'] !!}</td>
 
-                    <td style="text-align:left">{!! $value['created_at'] !!}</td>                   
+                    <td style="text-align:left">{!! $value['created_at'] !!}</td>   
+                     <td style="text-align:left">                     	
+                        <a  href="/edit-choir/?id={!! $value['id'] !!}" class="btn btn-sm btn-primary pull-center" ><i class="fa fa-pencil"></i></a>
+                        <button type="button" class="btn btn-sm btn-danger pull-right" onclick="deleteChoir({!! $value['id'] !!})"><span class="fa fa-remove"></span></button>
+                     </td>                 
 
                 </tr>
 
@@ -66,4 +71,40 @@
 @else
 	console.log("No Choirs found :/")
 @endif
+
+function deleteChoir(choir_id){
+	console.log("In deleteChoir");
+                $('#choir-delete-href').attr("href", "/delete-choir/?id="+choir_id);
+                $('#choir-delete-modal').modal('show');
+                $('#modal-choir-body').text('Are you sure you want to delete this choir?')
+            }
+
+
+        //could add date sorting for DataTable sorting, the needed delcarations are in the head as https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js and in MailChimp.blade.php as the function in the script before the tabs
+        //$.fn.dataTable.moment( 'd-M-Y' ); 
+		//DataTable
+        $(document).ready(function() {
+            $('#edit_choirs_table_id').DataTable({
+                //"paging": false,
+                //"order": [[ 1, "desc" ]], //set default sorting to specific column
+                //aaSorting:[],//disables initial sorting,
+                //scrollY: 500,
+                //searching: false, //disable searching
+                //"lengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]], //customize paging length options
+                //"bLengthChange": false, //disable changing paging length
+                //"iDisplayLength": 5, //default paging length
+                //"responsive": true,
+                /*
+                "columnDefs": [
+                    { //removes sorting from specific column
+                        "targets": [6],
+                        "orderable": false
+                    },
+                    //{ "type": "datetime-moment", targets: [7] } //auto detection seems to work better
+                ]
+                */
+            })
+        });
 </script>
+
+@include('modals.confirm-action-choir')

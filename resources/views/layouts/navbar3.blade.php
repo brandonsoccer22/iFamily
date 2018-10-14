@@ -14,7 +14,7 @@
     @else
         
 		<a class="nav_link" href="/polls">Polls</a>
-		<a class="nav_link" href="#choirs">Choirs</a>
+		<a class="nav_link" href="/view-choirs">Choirs</a>
 		<a class="nav_link" href="/groceries">Grocery List</a>
 
 		@if(session()->has('user') && session('user')['is_parent']==true)

@@ -15,6 +15,7 @@ class CreateChoirsTable extends Migration
     {
         Schema::create('choirs', function (Blueprint $table) {      
             
+            $table->increments('id')->onDelete('cascade');
             $table->integer('user_id')->unsigned();
             $table->integer('created_by')->unsigned();
             $table->string('name');

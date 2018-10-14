@@ -50,6 +50,13 @@ Route::post('/submit-new-user', 'UserController@addUser')->middleware('auth', 'i
 #choir routes
 Route::get('/reviewChoirs', ['middleware'=>['auth','is_parent','has_user'], 'uses'=>'ChoirController@index']);
 Route::post('/submit-new-choir', 'ChoirController@put')->middleware('auth', 'is_parent','has_user');
+Route::get('/edit-choir', 'ChoirController@get')->middleware('auth', 'is_parent','has_user');
+Route::post('/submit-edit-choir', 'ChoirController@patch')->middleware('auth', 'is_parent','has_user');
+Route::get('/delete-choir', 'ChoirController@delete')->middleware('auth', 'is_parent','has_user');
+Route::get('/view-choirs', 'ChoirController@view')->middleware('auth', 'has_user');
+Route::get('/submit-choir', 'ChoirController@submit')->middleware('auth', 'has_user');
+
+
 
 #groceries routes
 Route::get('/groceries', ['middleware'=>['auth','has_user'], 'uses'=>'GroceryController@index']);

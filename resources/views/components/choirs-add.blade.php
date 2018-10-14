@@ -30,7 +30,7 @@
                         @endforeach
 
                         <br>Note:<br>
-                        <textarea rows="4" cols="50" name="note" form="add-choir"></textarea>
+                        <textarea rows="4" cols="50" style="width:100%;" name="note" form="add-choir"></textarea>
 						<br>
 
 

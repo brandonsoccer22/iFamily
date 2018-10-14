@@ -11,7 +11,7 @@
                 <a href='#choirs-edit2' data-toggle="tab">Edit Choirs</a>
             </li>                
             <li  >
-                <a href='#choirs-approve2' data-toggle="tab">Review Choirs</a>
+                <a href='#choirs-approve2' data-toggle="tab">Approve Choirs</a>
             </li>                
         </ul>    
 </div>
@@ -48,3 +48,4 @@
 
 
 @endsection
+
