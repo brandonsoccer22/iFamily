@@ -72,3 +72,6 @@ Route::get('/polls/create', ['middleware'=>['auth','has_user'], 'uses'=>'PollCon
 Route::post('/polls', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@store']);
 Route::post('/polls/vote', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@vote']);
 Route::post('/polls/done', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@done']);
+
+#admin
+Route::get('/admin', ['middleware'=>['auth','has_user'], 'uses'=>'AdminController@view']);

@@ -23,7 +23,7 @@
 		@endif
 
 		@if(session()->has('user') && session('user')['is_admin']==true)			
-			<a class="nav_link" href="#admin">Admin</a>		
+			<a class="nav_link" href="/admin">Admin</a>		
 		@endif
            
         
