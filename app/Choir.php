@@ -14,7 +14,7 @@ class Choir extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','created_by', 'name', 'repeat','note','is_static'
+        'user_id','created_by', 'name', 'repeat','note','is_static', 'status'
     ];
 
     public static function get(){

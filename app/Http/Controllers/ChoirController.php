@@ -39,11 +39,11 @@ class ChoirController extends Controller
 
     	$choir= Choir::getChoir($data['id']);
 
+    	//\Log::info("Choir=".print_r($choir,true));
+
     	if(isset($data['status']) && $data['status']=="rejected"){
-
-    	}
-
-    	$choir['status']=$data['status'];
+    		$choir['status']=$data['status'];
+    	}   	
     	
     	//\Log::info(print_r($choir,true));
     	return view('components.choirs-edit-submit')->with('choir',$choir);
