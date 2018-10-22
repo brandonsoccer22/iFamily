@@ -12,7 +12,7 @@
         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
         
     @else
-        
+        @if(session()->has('user') && session('user')['is_admin']==false)
 		<a class="nav_link" href="/polls">Polls</a>
 		<a class="nav_link" href="/view-choirs">Choirs</a>
 		<a class="nav_link" href="/groceries">Grocery List</a>
@@ -21,8 +21,9 @@
 			<a class="nav_link" href="/addUser">Add Users</a>
 			<a class="nav_link" href="/reviewChoirs">Review Choirs</a>		
 		@endif
+        @endif
 
-		@if(session()->has('user') && session('user')['is_admin']==false)
+		@if(session()->has('user') && session('user')['is_admin']==true)
 			<a class="nav_link" href="/delete_user">Delete Users</a>
 			<a class="nav_link" href="/stats">Statistics</a>
 		@endif
