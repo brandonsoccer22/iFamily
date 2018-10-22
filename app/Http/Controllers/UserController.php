@@ -43,9 +43,8 @@ class UserController extends Controller
 
         $data=array();
 
-        $data=$request->all();
-
-       
+		$data=$request->all();
+		
 
         //\Log::info("in addUser, data=");
         //\Log::info(print_r($data,true));
@@ -63,7 +62,7 @@ class UserController extends Controller
 		            'family_id' => $data['parent-email'],
 		            'email' => $data['email'],
 		            'password' => Hash::make($data['password']),
-		            'is_parent' => $data['user-type'],
+					'is_parent' => $data['user-type'],
 		        ]);
 				  } catch (Exception $e){
 				    $errorCode = $e->errorInfo[1];
@@ -86,7 +85,7 @@ class UserController extends Controller
 		            'name' => $data['name'],
 		            'family_id' => $data['parent-email'],
 		            'email' => $data['email'],
-		            'password' => Hash::make($data['password']),            
+					'password' => Hash::make($data['password']),
 		        ]);
 				  } catch (Exception $e){
 				    $errorCode = $e->errorInfo[1];

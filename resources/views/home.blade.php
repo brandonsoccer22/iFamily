@@ -34,7 +34,11 @@
                 @elseif(isset($addPollSuccess))
                 <div class="alert alert-success" role="alert">
                     {!! $addPollSuccess !!}
-                </div>  
+                </div> 
+                @elseif(isset($del))
+                <div class="alert alert-success" role="alert">
+                    {!! $del !!}
+                </div> 
                 @elseif(session()->has('user') && session('user')['name'])
                 <div class="alert alert-success" role="alert">
                     Welcome {!! session('user')['name'] !!}!

@@ -22,8 +22,9 @@
 			<a class="nav_link" href="/reviewChoirs">Review Choirs</a>		
 		@endif
 
-		@if(session()->has('user') && session('user')['is_admin']==true)			
-			<a class="nav_link" href="/admin">Admin</a>		
+		@if(session()->has('user') && session('user')['is_admin']==false)
+			<a class="nav_link" href="/delete_user">Delete Users</a>
+			<a class="nav_link" href="/stats">Statistics</a>
 		@endif
            
         
