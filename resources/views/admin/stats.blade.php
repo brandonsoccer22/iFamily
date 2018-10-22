@@ -11,13 +11,19 @@
 		<div style='width:60%'>
         <table>
                   <thead>
-                  <tr><th>User</th><th>Email</th><th>ParentOrChild</th></tr>
+                  <tr>
+                  <th>User</th><th>Email</th><th>Role</th>
+                  </tr>
                   <tbody>
                   @foreach($users as $user)
                   <tr>
                   <td>{{$user->name}}</td>
                   <td>{{$user->email}}</td>
-                  <td>{{$user->is_parent}}</td>
+                  @if($user ->is_parent == 1)
+                  <td>{{"parent"}}</td>
+                  @else
+                  <td>{{"child"}}</td>
+                  @endif
                   @if($user->is_admin == 1)
                   <td>
                     <form>
