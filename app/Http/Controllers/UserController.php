@@ -86,7 +86,6 @@ class UserController extends Controller
 		            'family_id' => $data['parent-email'],
 		            'email' => $data['email'],
 					'password' => Hash::make($data['password']),
-					'is_admin' =>1,
 		        ]);
 				  } catch (Exception $e){
 				    $errorCode = $e->errorInfo[1];
