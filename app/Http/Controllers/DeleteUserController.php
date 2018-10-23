@@ -14,7 +14,8 @@ class DeleteUserController extends Controller
     public function view(Request $request){
 
         $users = DB::table('users')
-        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin')->get();
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin')
+        ->get();
         return view('admin.delete_user')->with('users',$users);
     }
 

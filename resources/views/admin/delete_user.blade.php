@@ -8,7 +8,7 @@
             <div class="card">                
                 <div class="card-header"><h3>Delete Users</h3></div>
                   <div class="card-body">
-		<div style='width:60%'>
+		<div style='width:100%'>
         <table>
                   <thead>
                   <tr><th>User</th><th>Email</th><th>Role</th></tr>
