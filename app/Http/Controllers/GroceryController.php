@@ -19,7 +19,7 @@ class GroceryController extends Controller
     	->join('users AS u1', 'u1.id', '=', 'groceries.created_by')
     	->join('users AS u2', 'u2.id', '=', 'groceries.done_by')
     	->whereNotNull('done_by')->get();
-    	return view('groceries.index')->with(['groceries' => $groceries, 'done_groceries' => $done_groceries]);
+    	return view('groceries.index')->with(['groceries' => $groceries, 'done_groceries' => $done_groceries, 'showFilter' => count($groceries) > 0]);
     }
     public function create()
     {
@@ -69,6 +69,7 @@ class GroceryController extends Controller
         ->join('users AS u2', 'u2.id', '=', 'groceries.done_by')
         ->whereNotNull('done_by')->get();
 
-        return view('groceries.index')->with(['groceries' => $groceries, 'done_groceries' => $done_groceries, 'checked' => request('filter')]);
+	$showFilter = count(DB::table('groceries')->SELECT('id')->get()) > 0;
+        return view('groceries.index')->with(['groceries' => $groceries, 'done_groceries' => $done_groceries, 'checked' => request('filter'), 'showFilter' => $showFilter]);
     }
 }

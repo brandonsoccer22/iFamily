@@ -53,16 +53,15 @@
 	</div>
 	<div id="Ongoing" class="tabcontent">
 		<div style='width:60%'>
-			@if (count($groceries) > 0)
+			@if ($showFilter)
 			<section>
 				<form method='POST' action='/groceries/filter'>
 					<table>
 					<tr>
 						{{csrf_field()}}
-						<td><label><input type="checkbox" name="filter[]" value="type1" @if(!isset($checked) or in_array('type1', $checked)) checked="true" @endif/>type1</label></td>
-						<td><label><input type="checkbox" name="filter[]" value="type2" @if(!isset($checked) or in_array('type2', $checked)) checked="true"@endif/>type2</label></td>
-						<td><label><input type="checkbox" name="filter[]" value="type3" @if(!isset($checked) or in_array('type3', $checked)) checked="true"@endif/>type3</label></td>
-						<td><label><input type="checkbox" name="filter[]" value="type4" @if(!isset($checked) or in_array('type4', $checked)) checked="true"@endif/>type4</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="food" @if(!isset($checked) or in_array('food', $checked)) checked="true" @endif/>Food</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="health" @if(!isset($checked) or in_array('health', $checked)) checked="true"@endif/>Health</label></td>
+						<td><label><input type="checkbox" name="filter[]" value="elec" @if(!isset($checked) or in_array('elec', $checked)) checked="true"@endif/>Electronics</label></td>
 					</tr>
 					</table>
 					<button type='submit' class="btn btn-primary">Filter</button><br><br>
@@ -103,7 +102,7 @@
 					@endforeach
 				</tbody>
 			</table>
-			@else
+			@elseif (!$showFilter)
 			No groceries needed right now. Come back later!
 			@endif
 		</div>

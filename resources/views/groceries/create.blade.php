@@ -29,10 +29,9 @@
 						<div>
 							<label for='type'>Type</label><br>
 							<select id='type' name='type'>
-								<option value='type1' selected="selected">Type1</option>
-								<option value='type2'>Type2</option>
-								<option value='type3'>Type3</option>
-								<option value='type4'>Type4</option>
+								<option value='food' selected="selected">Food</option>
+								<option value='health'>Health</option>
+								<option value='elec'>Electronics</option>
 							</select>
 						</div>
 						<br>
