@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width:1000px;">                
-                <div class="card-header"><h3>View Choirs</h3></div>
+                <div class="card-header"><h3>View Chores</h3></div>
                   <div class="card-body">
                      {{-- First Check --}}
     	@if(!empty((array)$choirs))
@@ -56,7 +56,7 @@
                 {{-- Second Check --}}
             @empty
                 <div>
-                    You do not have any choirs.
+                    You do not have any chores.
                 </div>
 
             @endforelse
@@ -76,13 +76,13 @@
 @if(isset($choirs))
 	console.log({!! json_encode($choirs) !!})
 @else
-	console.log("No Choirs found :/")
+	console.log("No Chores found :/")
 @endif
 
 function submitChoir(choir_id){	
                 $('#choir-delete-href').attr("href", "/submit-choir/?id="+choir_id).text("Submit").removeClass('btn-danger').addClass('btn-success');;
                 $('#choir-delete-modal').modal('show');
-                $('#modal-choir-body').text('Are you sure you want to submit this choir for parental review?');
+                $('#modal-choir-body').text('Are you sure you want to submit this chore for parental review?');
 
             }
 

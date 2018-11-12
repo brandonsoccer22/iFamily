@@ -39,7 +39,7 @@
                 <div class="alert alert-success" role="alert">
                     {!! $del !!}
                 </div> 
-                @elseif(session()->has('user') && session('user')['name'])
+                @elseif(session()->has('user') && isset(session('user')['name']))
                 <div class="alert alert-success" role="alert">
                     Welcome {!! session('user')['name'] !!}!
                 </div>                        

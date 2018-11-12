@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width:1000px;">                
-                <div class="card-header"><h3>Approve Choirs</h3></div>
+                <div class="card-header"><h3>Approve Chores</h3></div>
                   <div class="card-body">
                      {{-- First Check --}}
     	@if(!empty((array)$pendingChoirs))
@@ -51,7 +51,7 @@
                 {{-- Second Check --}}
             @empty
                 <div>
-                    You do not have any pending choirs to review.
+                    You do not have any pending Chores to review.
                 </div>
 
             @endforelse
@@ -75,7 +75,7 @@
 @endif
 
 function approveChoir(choir_id){	
-                $('#choir-delete-href').attr("href", "/delete-choir/?id="+choir_id+"status=approved").text("Approve").removeClass('btn-danger').addClass('btn-success');
+                $('#choir-delete-href').attr("href", "/delete-choir/?id="+choir_id+"&status=approved").text("Approve").removeClass('btn-danger').addClass('btn-success');
                 $('#choir-delete-modal').modal('show');
                 $('#modal-choir-body').text('Are you sure you want to approve this choir?');
             }

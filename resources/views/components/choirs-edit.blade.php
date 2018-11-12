@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="width:1000px;">                
-                <div class="card-header"><h3>Modify Choirs</h3></div>
+                <div class="card-header"><h3>Modify Chores</h3></div>
                   <div class="card-body">
                      {{-- First Check --}}
     	@if(!empty((array)$choirs))
@@ -69,7 +69,7 @@
 @if(isset($choirs))
 	console.log({!! json_encode($choirs) !!})
 @else
-	console.log("No Choirs found :/")
+	console.log("No Chores found :/")
 @endif
 
 

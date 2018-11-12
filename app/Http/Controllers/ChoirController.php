@@ -14,7 +14,7 @@ class ChoirController extends Controller
     	   	
     	$choirs= Choir::get();
     	$pendingChoirs= Choir::getPending();
-    	return view('review_choirs')->with('choirs',$choirs)->with('pendingChoirs',$pendingChoirs);;
+    	return view('review_choirs')->with('choirs',$choirs)->with('pendingChoirs',$pendingChoirs);
     }
 
     /**
@@ -56,8 +56,13 @@ class ChoirController extends Controller
     	switch($data['is_static']){
 
     		case 'none':
-    			$data['repeat']=$data['duedate'];
-    			$data['is_static']=false;
+                if($data['duedate']){
+        			$data['repeat']=$data['duedate'];
+        			$data['is_static']=false;
+                } else{
+                    $data['repeat']='NA';
+                    $data['is_static']=false;
+                }
     			break;
 
 			case 'daily':
@@ -101,9 +106,9 @@ class ChoirController extends Controller
 		        ]);
     	}
 
-    	$message="Choir Added Successfully!";
+    	$message="Chore Added Successfully!";
 
-    	return view('home')->with('addChoirSuccess', $message);;
+    	return view('home')->with('addChoirSuccess', $message);
     }
 
     public function patch(Request $request){
@@ -148,7 +153,7 @@ class ChoirController extends Controller
 		        ]);
     				//user_name
     				//created_by_name
-    	$message="Choir Editted Successfully!";
+    	$message="Chore Editted Successfully!";
 
     	} else{
     		Choir::where('id',$data['id'])->update([		            
@@ -160,12 +165,12 @@ class ChoirController extends Controller
 		            'is_static' => $data['is_static'],
 		            'status' => $data['status'],
 		        ]);
-    		$message="Choir Status updated to ".$data['status'];
+    		$message="Chore Status updated to ".$data['status'];
     	}
 
     	
 
-    	return view('home')->with('addChoirSuccess', $message);;
+    	return view('home')->with('addChoirSuccess', $message);
     }
 
     public function delete(Request $request){
@@ -182,13 +187,13 @@ class ChoirController extends Controller
 
     	
 
-    	$message="Choir Deleted Successfully!";
+    	$message="Chore Deleted Successfully!";
 
     	if(isset($data['status']) && $data['status']=="approved"){
-    		$message="Choir Approved Successfully!";
+    		$message="Chore Approved Successfully!";
     	}
 
-    	return view('home')->with('addChoirSuccess', $message);;
+    	return view('home')->with('addChoirSuccess', $message);
     }
 
     public function submit(Request $request){
@@ -203,9 +208,9 @@ class ChoirController extends Controller
     				//created_by_name
 
 
-    	$message="Choir Submitted Successfully!";
+    	$message="Chore Submitted Successfully!";
 
-    	return view('home')->with('addChoirSuccess', $message);;
+    	return view('home')->with('addChoirSuccess', $message);
     }   
 
 
