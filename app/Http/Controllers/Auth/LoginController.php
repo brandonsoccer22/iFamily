@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -41,11 +42,17 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout () {
+    public function logout (Request $request) {
+    
+    $data=$request->all();
     //logout user
     auth()->logout();
     \Session::flush();
     // redirect to homepage
+    if(isset($data['state']) && $data['state']=='deleted'){
+        return view('home')->with('addError','You are deleted');
+    } else{
     return redirect('/');
+    }
 }
 }

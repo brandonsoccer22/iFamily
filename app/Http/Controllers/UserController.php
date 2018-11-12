@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+//use Auth;
+//use App\Http\Controllers\Auth\LoginController;
 
 class UserController extends Controller
 {
@@ -28,7 +30,14 @@ class UserController extends Controller
 
     	$family= User::getFamily($user['family_id']);
 
-    	$user['family']=$family;
+		$user['family']=$family;
+		if($user['is_hidden'] == true){
+
+			//Auth::logout();
+			//\Session::flush();
+			//return view('home')->with('addError','You are deleted');
+			return redirect('/logout?state=deleted');
+		}
 
     	\Session::put('user', $user); 	
     	\Session::save();

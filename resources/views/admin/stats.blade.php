@@ -114,7 +114,7 @@
                   <td>
                     <form method='POST' action='/recoverchore' onsubmit="return confirm('Are you sure you want to recover this chore?')">
                     {{csrf_field()}}
-                    <button type = 'submit' class = "btn btn-primary">Recover</button>
+                    <button  style = "float:right;" type = 'submit' class = "btn btn-primary">Recover</button>
 					<input type="hidden" name="id" value="{{$chore->id}}">
                     </form>
                   </td>
@@ -158,12 +158,13 @@
         <table>
         <thead><tr><th>POLLS</th></tr></thead>
                   <thead>
-                  <tr><th>Name</th><th>CreatedBy</th></tr>
+                  <tr><th>Name</th><th>CreatedBy</th><th>Completed</th></tr>
                   <tbody>
                   @foreach($polls_history as $poll)
                   <tr>
                   <td>{{$poll->title}}</td>
                   <td>{{$poll->username}}</td>
+                  <td>{{$poll->completed}}</td>
                   <td>
                     <form method='POST' action='/recoverpoll' onsubmit="return confirm('Are you sure you want to recover this poll?')">
                     {{csrf_field()}}
