@@ -24,7 +24,7 @@
         @endif
 
 		@if(session()->has('user') && session('user')['is_admin']==true)
-			<a class="nav_link" href="/delete_user">Delete Users</a>
+			<a class="nav_link" href="/delete_user">User List</a>
 			<a class="nav_link" href="/stats">Statistics</a>
 		@endif
            

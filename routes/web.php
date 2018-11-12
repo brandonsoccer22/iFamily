@@ -74,11 +74,18 @@ Route::post('/polls/vote', ['middleware'=>['auth','has_user'], 'uses'=>'PollCont
 Route::post('/polls/done', ['middleware'=>['auth','has_user'], 'uses'=>'PollController@done']);
 
 #admin
-Route::get('/stats', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@view']);
 Route::get('/delete_user', ['middleware'=>['auth','has_user'], 'uses'=>'DeleteUserController@view']);
 Route::post('/deleteuser', ['middleware'=>['auth','has_user'], 'uses'=>'DeleteUserController@delete']);
 Route::post('/recoveruser',['middleware'=>['auth', 'has_user'], 'uses'=>'DeleteUserController@recover']);
 Route::post('/deletefamily',['middleware'=>['auth', 'has_user'], 'uses'=>'DeleteUserController@deletefamily']);
+
+Route::get('/stats', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@view']);
+Route::post('/recoverpoll', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@recoverpoll']);
+Route::post('/recoverchore', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@recoverchore']);
+Route::post('/recovergrocery', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@recovergrocery']);
+Route::post('/deletepoll', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@deletepoll']);
+Route::post('/deletechore', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@deletechore']);
+Route::post('/deletegrocery', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@deletegrocery']);
 
 
 

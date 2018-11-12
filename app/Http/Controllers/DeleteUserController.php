@@ -55,6 +55,7 @@ class DeleteUserController extends Controller
     public function deletefamily(){
         DB::table('users')
         ->where('family_id', request('id'))
+        ->where('is_admin', false)
         ->update(['is_hidden' => true]);
 
 
