@@ -77,6 +77,8 @@ Route::post('/polls/done', ['middleware'=>['auth','has_user'], 'uses'=>'PollCont
 Route::get('/stats', ['middleware'=>['auth','has_user'], 'uses'=>'StatsController@view']);
 Route::get('/delete_user', ['middleware'=>['auth','has_user'], 'uses'=>'DeleteUserController@view']);
 Route::post('/deleteuser', ['middleware'=>['auth','has_user'], 'uses'=>'DeleteUserController@delete']);
+Route::post('/recoveruser',['middleware'=>['auth', 'has_user'], 'uses'=>'DeleteUserController@recover']);
+Route::post('/deletefamily',['middleware'=>['auth', 'has_user'], 'uses'=>'DeleteUserController@deletefamily']);
 
 
 

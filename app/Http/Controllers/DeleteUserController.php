@@ -14,9 +14,18 @@ class DeleteUserController extends Controller
     public function view(Request $request){
 
         $users = DB::table('users')
-        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', false)
+        ->ORDERBY('family_id')
         ->get();
-        return view('admin.delete_user')->with('users',$users);
+
+        $hiddenusers = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', true)
+        ->orderby('family_id')
+        ->get();
+
+        return view('admin.delete_user')->with(['users' => $users, 'hiddenusers' => $hiddenusers]);
     }
 
     
@@ -24,11 +33,64 @@ class DeleteUserController extends Controller
     {
         DB::table('users')
         ->where('id', request('id'))
-        ->delete();
+        ->update(['is_hidden' => true]);
 
-        $message="User deleted successfully!";
-    	return view('home')->with('del',$message);;
+
+        $users = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', false)
+        ->ORDERBY('family_id')
+        ->get();
+
+        $hiddenusers = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', true)
+        ->orderby('family_id')
+        ->get();
+
+        return view('admin.delete_user')->with(['users' => $users, 'hiddenusers' => $hiddenusers]);
 
     }
 
+    public function deletefamily(){
+        DB::table('users')
+        ->where('family_id', request('id'))
+        ->update(['is_hidden' => true]);
+
+
+        $users = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', false)
+        ->ORDERBY('family_id')
+        ->get();
+
+        $hiddenusers = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', true)
+        ->orderby('family_id')
+        ->get();
+
+        return view('admin.delete_user')->with(['users' => $users, 'hiddenusers' => $hiddenusers]);
+    }
+    
+    public function recover(){
+        DB::table('users')
+        ->where('id', request('id'))
+        ->update(['is_hidden' => false]);
+        $users = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', false)
+        ->ORDERBY('family_id')
+        ->get();
+
+        $hiddenusers = DB::table('users')
+        ->SELECT('users.id', 'users.name', 'users.email', 'users.is_parent', 'users.is_admin', 'users.family_id', 'users.is_hidden')
+        ->where('users.is_hidden', true)
+        ->orderby('family_id')
+        ->get();
+
+        $message="User recovered successfully!";
+        //return view('home')->with('del',$message);;
+        return view('admin.delete_user')->with(['users' => $users, 'hiddenusers' => $hiddenusers]);
+    }
 }
