@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">                
-                <div class="card-header"><h3>Add a Choir</h3></div>
+                <div class="card-header"><h3>Add a Chore</h3></div>
                   <div class="card-body">
                     <form method="POST" action="/submit-new-choir" id="add-choir">
                         @csrf

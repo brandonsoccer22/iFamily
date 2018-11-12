@@ -14,12 +14,12 @@
     @else
         @if(session()->has('user') && session('user')['is_admin']==false)
 		<a class="nav_link" href="/polls">Polls</a>
-		<a class="nav_link" href="/view-choirs">Choirs</a>
+		<a class="nav_link" href="/view-choirs">Chores</a>
 		<a class="nav_link" href="/groceries">Grocery List</a>
 
 		@if(session()->has('user') && session('user')['is_parent']==true)
 			<a class="nav_link" href="/addUser">Add Users</a>
-			<a class="nav_link" href="/reviewChoirs">Review Choirs</a>		
+			<a class="nav_link" href="/reviewChoirs">Review Chores</a>		
 		@endif
         @endif
 

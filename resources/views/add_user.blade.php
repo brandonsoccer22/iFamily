@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <br>
             <div class="card">                
                 <div class="card-header"><h3>Add a Family Member</h3></div>
                   <div class="card-body">
@@ -80,9 +81,58 @@
                     </form>
                 </div>               
             </div>
+
+            <br>
+
+            <!-- show current users -->
+            <div class="card">                
+                <div class="card-header"><h3>Current Family Members</h3></div>
+                    <div class="card-body">
+                        
+                        @if(!empty((array)session('user')['family']))
+                        <table id="view_family_members_table_id" class="table" data-mobile-responsive="true"> {{--Note sure if data-mobile-responsive="true" does anything--}}
+                            <thead>
+                            <tr>
+                                <th style="text-align:left;width: 20px;">Name</th>
+                                <th style="text-align:left;width: 20px;">Email</th>                        
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @endif
+
+                            @forelse((array)session('user')['family'] as $key => $value)
+
+                                <tr >
+
+                                    <td style="text-align:left;">{!! $value['name'] !!}</td>
+
+                                    <td style="text-align:left;">{!! $value['email'] !!}</td>
+                                    
+                                </tr>
+
+                                {{-- Second Check --}}
+                            @empty
+                                <div>
+                                    You do not have any family members yet.
+                                </div>
+
+                            @endforelse
+
+                            {{-- Third Check --}}
+                            @if(!empty((array)session('user')['family']))
+                            </tbody>
+                        </table>
+                            @endif
+
+                       
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
 
 <script>
     @if(session()->has('user'))

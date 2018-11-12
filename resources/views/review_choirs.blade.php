@@ -5,13 +5,13 @@
         <ul class='nav nav-tabs childnav' id="timeline">
             
             <li class="active">
-                <a href='#choirs-add2' data-toggle="tab">Add Choir</a>
+                <a href='#choirs-add2' data-toggle="tab">Add Chore</a>
             </li>                
             <li  >
-                <a href='#choirs-edit2' data-toggle="tab">Edit Choirs</a>
+                <a href='#choirs-edit2' data-toggle="tab">Edit Chores</a>
             </li>                
             <li  >
-                <a href='#choirs-approve2' data-toggle="tab">Approve Choirs</a>
+                <a href='#choirs-approve2' data-toggle="tab">Approve Chores</a>
             </li>                
         </ul>    
 </div>
