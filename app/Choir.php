@@ -14,27 +14,33 @@ class Choir extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id','created_by', 'name', 'repeat','note','is_static', 'status'
+        'user_id','created_by', 'name', 'repeat','note','is_static', 'status','family_id'
     ];
 
     public static function get(){
         
+        $params = [session()->get('user')['family_id']];
+
+        //\Log::info(print_r($params,true));
+
         $sql = "SELECT choirs.*,u1.name as user_name, u2.name as created_by_name
                 FROM choirs, users as u1, users as u2
-                WHERE choirs.user_id=u1.id AND choirs.created_by=u2.id AND choirs.status<>'deleted'";
+                WHERE choirs.user_id=u1.id AND choirs.created_by=u2.id AND choirs.status<>'deleted' AND choirs.family_id=?";
        
-        $rs = \DB::select($sql);
+        $rs = \DB::select($sql, $params);
 
         return json_decode(json_encode($rs), true);
     }
 
     public static function getPending(){
         
+        $params = [session()->get('user')['family_id']];
+
         $sql = "SELECT choirs.*,u1.name as user_name, u2.name as created_by_name
                 FROM choirs, users as u1, users as u2
-                WHERE choirs.user_id=u1.id AND choirs.created_by=u2.id AND choirs.status<>'deleted' AND choirs.status='pending'";
+                WHERE choirs.user_id=u1.id AND choirs.created_by=u2.id AND choirs.status<>'deleted' AND choirs.status='pending' AND choirs.family_id=?";
        
-        $rs = \DB::select($sql);
+         $rs = \DB::select($sql,$params);
 
         return json_decode(json_encode($rs), true);
     }

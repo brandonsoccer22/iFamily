@@ -13,6 +13,7 @@ class CreateChoirsTable extends Migration
      */
     public function up()
     {
+        //could add family_id here if you delete the choirs_table_add_family_id migration
         Schema::create('choirs', function (Blueprint $table) {      
             
             $table->increments('id')->onDelete('cascade');

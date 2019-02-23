@@ -1,9 +1,10 @@
 <div class="container tab-pane" id='choirs-approve2'>
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="width:1000px;">                
+        <div class="col-md-12">
+            <div class="card">                
                 <div class="card-header"><h3>Approve Chores</h3></div>
                   <div class="card-body">
+                    <div class="wrapper">
                      {{-- First Check --}}
     	@if(!empty((array)$pendingChoirs))
         <table id="approve_choirs_table_id" class="table" data-mobile-responsive="true"> {{--Note sure if data-mobile-responsive="true" does anything--}}
@@ -61,6 +62,7 @@
             </tbody>
         </table>
     		@endif
+                    </div>                
                 </div>               
             </div>
         </div>

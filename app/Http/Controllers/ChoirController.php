@@ -89,7 +89,8 @@ class ChoirController extends Controller
 		            'user_id' => $data['user_id'],
 		            'created_by' => $data['created_by'],
 		            'repeat' => $data['repeat'],
-		            'note' => $data['note'],		            
+		            'note' => $data['note'],
+                    'family_id' => session()->get('user')['family_id'],	            
 		            'is_static' => $data['is_static'],
 		        ]);
     				//user_name
@@ -100,7 +101,8 @@ class ChoirController extends Controller
 		            'user_id' => $data['user_id'],
 		            'created_by' => $data['created_by'],
 		            'repeat' => $data['repeat'],
-		            'note' => $data['note'],		            
+		            'note' => $data['note'],
+                    'family_id' => session()->get('user')['family_id'],		            
 		            'is_static' => $data['is_static'],
 		            'status' => $data['status'],
 		        ]);

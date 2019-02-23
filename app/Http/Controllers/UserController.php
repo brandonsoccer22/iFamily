@@ -22,6 +22,47 @@ class UserController extends Controller
     	return view('add_user');
     }
 
+    public function editPage(Request $request){
+        $user = $request->user();       
+
+        return view('edit_profile');
+    }
+
+    public function patch(Request $request){
+        $data=$request->all(); 
+        $user = $request->user();      
+
+        $message="";
+
+         try {
+                   User::where('id',$data['id'])->update([                    
+                    'name' => $data['name'],
+                    'email' => $data['email'],                    
+                ]);
+          } catch (Exception $e){
+            $errorCode = $e->errorInfo[1];
+            if($errorCode == 1062){
+                $message = "Email is already taken";
+
+                return view('edit_profile')->with('error', $message);
+            } else{
+                $message = "Unknown Error";
+                return view('edit_profile')->with('error', $message);
+            }
+          }        
+
+        $user['name']=$data['name'];
+        $user['email']=$data['email'];
+
+
+        \Session::put('user', $user);   
+        \Session::save();
+
+        $message="Profile Updated Successfully!";
+        return view('edit_profile')->with('success', $message);
+
+    }
+
 
     //set the current value of the user
     public function setUser(Request $request){

@@ -39,3 +39,18 @@ th {
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
 }
+
+/* Does not work for scrollable table */
+div.wrapper { 
+  overflow: auto; 
+  /*overflow-y: scroll; */
+  width:100%;     
+}
+
+.fixed_header tbody{
+  display:block;  
+  width:100%;
+}
+.fixed_header thead tr{
+  display:block;
+}

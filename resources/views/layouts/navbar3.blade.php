@@ -27,7 +27,7 @@
 			<a class="nav_link" href="/delete_user">User List</a>
 			<a class="nav_link" href="/stats">Statistics</a>
 		@endif
-           
+       <a class="nav_link" href="/edit-profile">Edit Profile</a>    
         
         <a class="nav_link" href="{{ url('/logout') }}"> Logout </a>
 
@@ -74,4 +74,6 @@ for (var i = 0; i < btns.length; i++) {
     this.className += " active";
   });
 }
+
+{{--console.log({!! json_encode(session()->get('user')) !!});--}}
 </script>
