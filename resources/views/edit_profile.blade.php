@@ -15,10 +15,10 @@
                         <input type="hidden" name="id"  value="{!! session()->get('user')['id'] !!}"><br><br>
 
                         Email:<br>
-  						<input type="email" name="email"  value="{!! session()->get('user')['email'] !!}"  style="width: 40%;min-width: 30px"><br><br>
+  						<input type="email" name="email"  value="{!! session()->get('user')['email'] !!}"  style="width: 40%;min-width: 100px"><br><br>
   						
   						Name:<br>
-  						<input type="text" name="name"  value="{!! session()->get('user')['name'] !!}" style="width: 40%;min-width: 30px"><br>	
+  						<input type="text" name="name"  value="{!! session()->get('user')['name'] !!}" style="width: 40%;min-width: 100px"><br>	
 
                         <br>
                         <button type="submit" class="btn btn-primary">
