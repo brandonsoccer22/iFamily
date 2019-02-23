@@ -38,8 +38,8 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 //Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home', 'UserController@setUser');
-Route::get('/edit-profile', 'UserController@editPage');
-Route::post('/user-patch', 'UserController@patch');
+Route::get('/edit-profile', 'UserController@editPage')->middleware('auth', 'has_user');
+Route::post('/user-patch', 'UserController@patch')->middleware('auth', 'has_user');
 
 #example with middleware
 #Route::put('/', ['middleware'=>'auth', 'uses'=>'AuthController@setAccount']);
